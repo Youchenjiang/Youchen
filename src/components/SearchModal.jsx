@@ -1,0 +1,154 @@
+import React, { useState, useEffect } from 'react';
+import { Search, X, ArrowRight, Shield } from 'lucide-react';
+
+export default function SearchModal({ isOpen, onClose, posts, onSelectPost }) {
+  const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (isOpen) onClose();
+        else setQuery('');
+      }
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  const filteredPosts = posts.filter(post => {
+    const q = query.toLowerCase();
+    return (
+      post.title.toLowerCase().includes(q) ||
+      post.summary.toLowerCase().includes(q) ||
+      post.tags.some(t => t.toLowerCase().includes(q))
+    );
+  });
+
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100vw',
+      height: '100vh',
+      background: 'rgba(9, 13, 22, 0.85)',
+      backdropFilter: 'blur(10px)',
+      zIndex: 100,
+      display: 'flex',
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+      paddingTop: '10vh'
+    }}>
+      <div 
+        className="glass-card"
+        style={{
+          width: '90%',
+          maxWidth: '650px',
+          padding: '1.25rem',
+          border: '1px solid var(--accent-green)',
+          boxShadow: '0 0 30px rgba(0, 255, 102, 0.2)'
+        }}
+      >
+        {/* Input Field */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.75rem',
+          paddingBottom: '1rem',
+          borderBottom: '1px solid rgba(255,255,255,0.08)'
+        }}>
+          <Search size={20} color="var(--accent-green)" />
+          <input
+            type="text"
+            placeholder="關鍵字搜尋 (例如: Android, LLM, PicoCTF, Web)..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            autoFocus
+            style={{
+              width: '100%',
+              background: 'transparent',
+              border: 'none',
+              outline: 'none',
+              color: '#ffffff',
+              fontSize: '1rem',
+              fontFamily: 'var(--font-mono)'
+            }}
+          />
+          <button
+            onClick={onClose}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: 'var(--text-muted)',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        {/* Results List */}
+        <div style={{ maxHeight: '60vh', overflowY: 'auto', paddingTop: '1rem' }}>
+          {filteredPosts.length === 0 ? (
+            <div style={{
+              textAlign: 'center',
+              padding: '2rem',
+              color: 'var(--text-muted)',
+              fontFamily: 'var(--font-mono)'
+            }}>
+              無匹配的文章結果
+            </div>
+          ) : (
+            filteredPosts.map(post => (
+              <div
+                key={post.id}
+                onClick={() => {
+                  onSelectPost(post.id);
+                  onClose();
+                }}
+                style={{
+                  padding: '1rem',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  background: 'rgba(255,255,255,0.02)',
+                  marginBottom: '0.5rem',
+                  border: '1px solid transparent',
+                  transition: 'all 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(0, 255, 102, 0.05)';
+                  e.currentTarget.style.borderColor = 'rgba(0, 255, 102, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                  e.currentTarget.style.borderColor = 'transparent';
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span className="cyber-badge" style={{ fontSize: '0.65rem' }}>{post.category}</span>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                    {post.date}
+                  </span>
+                </div>
+                <h4 style={{ color: '#fff', fontSize: '1rem', marginTop: '0.4rem', marginBottom: '0.3rem' }}>
+                  {post.title}
+                </h4>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                  {post.summary.slice(0, 80)}...
+                </p>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
