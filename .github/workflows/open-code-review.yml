@@ -25,3 +25,5 @@ jobs:
           llm_url: ${{ secrets.OCR_LLM_URL }}
           llm_auth_token: ${{ secrets.OCR_LLM_TOKEN }}
           llm_model: ${{ secrets.OCR_LLM_MODEL }}
+          llm_use_anthropic: 'false'
+          language: 'Traditional Chinese'
