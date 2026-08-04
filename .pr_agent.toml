@@ -1,0 +1,23 @@
+[config]
+# PR Agent actions trigger on all PR lifecycle events
+pr_actions = ["opened", "reopened", "ready_for_review", "synchronize"]
+model = "gpt-4o"
+fallback_models = ["gpt-4o-mini"]
+
+[pr_reviewer]
+# Enable Open Code Review, Security Auditing, and Performance Checks
+enable_frequent_labels = true
+enable_auto_approval = false
+require_score = true
+require_security_review = true
+require_tests_review = true
+
+[pr_description]
+# Auto-generate PR descriptions matching repository template
+publish_labels = true
+use_description_template = true
+
+[pr_code_suggestions]
+# Open Code Review suggestions for security, performance, and best practices
+commitable_code_suggestions = true
+num_code_suggestions = 4
