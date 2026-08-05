@@ -6,7 +6,8 @@ export default function HeroTerminal() {
 
   const copyContact = async () => {
     try {
-      await navigator.clipboard.writeText('g1014308@gmail.com');
+      const email = import.meta.env.VITE_CONTACT_EMAIL || 'g1014308@gmail.com';
+      await navigator.clipboard.writeText(email);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -106,7 +107,7 @@ export default function HeroTerminal() {
                 <span style={{ color: 'var(--text-muted)' }}>Location: <strong style={{ color: '#fff' }}>Taoyuan / Pingtung, TW</strong></span>
                 <span style={{ color: 'var(--text-muted)' }}>Status: <strong style={{ color: 'var(--accent-green)' }}>Building AI & Security Tools</strong></span>
               </div>
-              <button 
+              <button
                 onClick={copyContact}
                 style={{
                   background: 'transparent',
