@@ -11,11 +11,12 @@ const targetHook = path.resolve(gitHooksDir, 'pre-commit');
 
 try {
   if (fs.existsSync(gitHooksDir)) {
+    // Copy hook source script into .git/hooks directory safely
     fs.copyFileSync(sourceHook, targetHook);
     try {
       fs.chmodSync(targetHook, '755');
     } catch (e) {
-      // Chmod fallback for Windows environments
+      // Chmod fallback for Windows environments where chmod is not supported
     }
     console.log('✅ Git pre-commit hook installed successfully into .git/hooks/pre-commit');
   } else {
