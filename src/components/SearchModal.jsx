@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Search, X, ArrowRight, Shield } from 'lucide-react';
 
-export default function SearchModal({ isOpen, onClose, posts, onSelectPost }) {
+/**
+ * SearchModal Component
+ * Provides a global search modal overlay to filter articles by title, summary, or tags.
+ *
+ * @param {Object} props
+ * @param {boolean} props.isOpen - Controls overlay visibility
+ * @param {Function} props.onClose - Modal close handler
+ * @param {Array} props.posts - Array of article objects
+ * @param {Function} props.onSelectPost - Handler invoked when an article is selected
+ */
+export default function SearchModal({ isOpen = false, onClose, posts = [], onSelectPost }) {
   const [query, setQuery] = useState('');
 
   // Close on Escape key for accessibility
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') onClose?.();
     };
     if (isOpen) {
       window.addEventListener('keydown', handleKeyDown);
@@ -22,13 +32,14 @@ export default function SearchModal({ isOpen, onClose, posts, onSelectPost }) {
 
   if (!isOpen) return null;
 
-  const filteredPosts = posts.filter(post => {
-    const q = query.toLowerCase();
-    return (
-      post.title.toLowerCase().includes(q) ||
-      post.summary.toLowerCase().includes(q) ||
-      post.tags.some(t => t.toLowerCase().includes(q))
-    );
+  const safePosts = Array.isArray(posts) ? posts : [];
+  const filteredPosts = safePosts.filter(post => {
+    const q = query.trim().toLowerCase();
+    if (!q) return true;
+    const titleMatch = post.title?.toLowerCase().includes(q) ?? false;
+    const summaryMatch = post.summary?.toLowerCase().includes(q) ?? false;
+    const tagMatch = post.tags?.some(t => t.toLowerCase().includes(q)) ?? false;
+    return titleMatch || summaryMatch || tagMatch;
   });
 
   return (
