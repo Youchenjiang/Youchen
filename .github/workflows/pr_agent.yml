@@ -20,8 +20,8 @@ jobs:
         uses: Codium-ai/pr-agent@main
         env:
           OPENAI_KEY: ${{ secrets.OCR_LLM_TOKEN }}
-          OPENAI_API_BASE: "https://integrate.api.nvidia.com/v1"
-          CONFIG__MODEL: "openai/qwen/qwen2.5-coder-32b-instruct"
+          OPENAI_API_BASE: ${{ secrets.OCR_LLM_URL }}
+          CONFIG__MODEL: ${{ secrets.OCR_LLM_MODEL }}
           CONFIG__CUSTOM_MODEL_MAX_TOKENS: "65536"
           CONFIG__PR_ACTIONS: '["opened", "reopened", "ready_for_review", "synchronize"]'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
