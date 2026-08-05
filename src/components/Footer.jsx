@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Github, Heart } from 'lucide-react';
+import { Shield, Github } from 'lucide-react';
 
 export default function Footer() {
   return (
