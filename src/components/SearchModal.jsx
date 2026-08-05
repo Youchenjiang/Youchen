@@ -4,20 +4,21 @@ import { Search, X, ArrowRight, Shield } from 'lucide-react';
 export default function SearchModal({ isOpen, onClose, posts, onSelectPost }) {
   const [query, setQuery] = useState('');
 
+  // Close on Escape key for accessibility
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        if (isOpen) onClose();
-        else setQuery('');
-      }
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
+      if (e.key === 'Escape') onClose();
     };
-    window.addEventListener('keydown', handleKeyDown);
+    if (isOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
+
+  // Reset query when modal opens
+  useEffect(() => {
+    if (isOpen) setQuery('');
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
