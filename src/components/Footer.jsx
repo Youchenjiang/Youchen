@@ -1,7 +1,8 @@
 import React from 'react';
-import { Shield, Github } from 'lucide-react';
+import { Shield } from 'lucide-react';
 
 export default function Footer() {
+  const year = import.meta.env.VITE_COPYRIGHT_YEAR || new Date().getFullYear();
   return (
     <footer style={{
       borderTop: '1px solid rgba(255, 255, 255, 0.08)',
@@ -61,7 +62,7 @@ export default function Footer() {
           borderTop: '1px solid rgba(255,255,255,0.05)',
           width: '100%'
         }}>
-          © {new Date().getFullYear()} Youchen Jiang (蔣侑宸). All Rights Reserved.
+          © {year} Youchen Jiang (蔣侑宸). All Rights Reserved.
         </div>
       </div>
     </footer>
