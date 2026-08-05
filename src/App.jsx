@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import HeroTerminal from './components/HeroTerminal';
 import TagFilter from './components/TagFilter';
@@ -14,6 +14,22 @@ export default function App() {
   const [selectedPostId, setSelectedPostId] = useState(null);
   const [activeTag, setActiveTag] = useState('ALL');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  // Global keyboard shortcuts: Ctrl+K to toggle search, Escape to close
+  const handleGlobalKeyDown = useCallback((e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      setIsSearchOpen((prev) => !prev);
+    }
+    if (e.key === 'Escape' && isSearchOpen) {
+      setIsSearchOpen(false);
+    }
+  }, [isSearchOpen]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, [handleGlobalKeyDown]);
 
   // Extract all unique tags for blog
   const allTags = ['ALL', ...Array.from(new Set(POSTS.flatMap(p => [p.category, ...p.tags])))];
