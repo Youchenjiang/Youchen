@@ -1,4 +1,19 @@
-export const PROJECTS = [
+/**
+ * @typedef {Object} Project
+ * @property {string} id - Unique identifier
+ * @property {string} title - Project display name
+ * @property {string} subtitle - Project subtitle/tagline
+ * @property {string} category - Tech category classification
+ * @property {string[]} tags - Associated tech stack tags
+ * @property {boolean} [featured] - Whether highlighted as featured
+ * @property {string} github - Repository link
+ * @property {string} [demo] - Live preview link
+ * @property {string} summary - Short project overview
+ * @property {string[]} highlights - Key architectural features
+ */
+
+/** @type {ReadonlyArray<Project>} */
+export const PROJECTS = Object.freeze([
   {
     id: "line-ai-assistant",
     title: "Line AI Assistant 智慧個人秘書",
@@ -59,4 +74,4 @@ export const PROJECTS = [
       "跨專案模組複用支援"
     ]
   }
-];
+]);
