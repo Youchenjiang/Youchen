@@ -43,38 +43,10 @@ export default function SearchModal({ isOpen = false, onClose, posts = [], onSel
   });
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100vw',
-      height: '100vh',
-      background: 'rgba(9, 13, 22, 0.85)',
-      backdropFilter: 'blur(10px)',
-      zIndex: 100,
-      display: 'flex',
-      alignItems: 'flex-start',
-      justifyContent: 'center',
-      paddingTop: '10vh'
-    }}>
-      <div 
-        className="glass-card"
-        style={{
-          width: '90%',
-          maxWidth: '650px',
-          padding: '1.25rem',
-          border: '1px solid var(--accent-green)',
-          boxShadow: '0 0 30px rgba(0, 255, 102, 0.2)'
-        }}
-      >
+    <div className="search-modal-overlay">
+      <div className="search-modal-card">
         {/* Input Field */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.75rem',
-          paddingBottom: '1rem',
-          borderBottom: '1px solid rgba(255,255,255,0.08)'
-        }}>
+        <div className="search-modal-input-field">
           <Search size={20} color="var(--accent-green)" />
           <input
             type="text"
@@ -82,40 +54,20 @@ export default function SearchModal({ isOpen = false, onClose, posts = [], onSel
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             autoFocus
-            style={{
-              width: '100%',
-              background: 'transparent',
-              border: 'none',
-              outline: 'none',
-              color: '#ffffff',
-              fontSize: '1rem',
-              fontFamily: 'var(--font-mono)'
-            }}
+            className="search-modal-input"
           />
           <button
             onClick={onClose}
-            style={{
-              background: 'transparent',
-              border: 'none',
-              color: 'var(--text-muted)',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center'
-            }}
+            className="search-modal-close-button"
           >
             <X size={20} />
           </button>
         </div>
 
         {/* Results List */}
-        <div style={{ maxHeight: '60vh', overflowY: 'auto', paddingTop: '1rem' }}>
+        <div className="search-modal-results">
           {filteredPosts.length === 0 ? (
-            <div style={{
-              textAlign: 'center',
-              padding: '2rem',
-              color: 'var(--text-muted)',
-              fontFamily: 'var(--font-mono)'
-            }}>
+            <div className="search-modal-no-results">
               無匹配的文章結果
             </div>
           ) : (
@@ -126,34 +78,24 @@ export default function SearchModal({ isOpen = false, onClose, posts = [], onSel
                   onSelectPost(post.id);
                   onClose();
                 }}
-                style={{
-                  padding: '1rem',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  background: 'rgba(255,255,255,0.02)',
-                  marginBottom: '0.5rem',
-                  border: '1px solid transparent',
-                  transition: 'all 0.2s'
-                }}
+                className="search-modal-result-item"
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'rgba(0, 255, 102, 0.05)';
-                  e.currentTarget.style.borderColor = 'rgba(0, 255, 102, 0.3)';
+                  e.currentTarget.classList.add('search-modal-result-item-hover');
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
-                  e.currentTarget.style.borderColor = 'transparent';
+                  e.currentTarget.classList.remove('search-modal-result-item-hover');
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div className="search-modal-result-header">
                   <span className="cyber-badge" style={{ fontSize: '0.65rem' }}>{post.category}</span>
                   <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
                     {post.date}
                   </span>
                 </div>
-                <h4 style={{ color: '#fff', fontSize: '1rem', marginTop: '0.4rem', marginBottom: '0.3rem' }}>
+                <h4 className="search-modal-result-title">
                   {post.title}
                 </h4>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                <p className="search-modal-result-summary">
                   {post.summary.slice(0, 80)}...
                 </p>
               </div>
