@@ -1,17 +1,29 @@
 import React from 'react';
 import { Calendar, Clock, ArrowRight, Shield, Cpu, Tag, Star } from 'lucide-react';
 
-export default function ArticleCard({ post, onSelectPost }) {
+/**
+ * ArticleCard Component
+ * Displays a summary card for a blog article with tag badges, reading time, and click handler.
+ *
+ * @param {Object} props
+ * @param {Object} props.post - Article data object
+ * @param {Function} props.onSelectPost - Handler invoked when card is clicked
+ */
+export default function ArticleCard({ post = {}, onSelectPost }) {
+  if (!post || !post.id) return null;
+
+  const tags = Array.isArray(post.tags) ? post.tags : [];
+
   return (
     <article 
       className="glass-card"
-      onClick={() => onSelectPost(post.id)}
+      onClick={() => onSelectPost?.(post.id)}
       style={{
         padding: '1.75rem',
         cursor: 'pointer',
         display: 'flex',
         flexDirection: 'column',
-        justify: 'space-between',
+        justifyContent: 'space-between',
         position: 'relative',
         overflow: 'hidden'
       }}
@@ -44,7 +56,7 @@ export default function ArticleCard({ post, onSelectPost }) {
             {post.category === 'AI Application' ? <Cpu size={12}/> : <Shield size={12}/>}
             {post.category}
           </span>
-          {post.tags.slice(0, 3).map((tag) => (
+          {tags.slice(0, 3).map((tag) => (
             <span key={tag} style={{
               fontSize: '0.75rem',
               fontFamily: 'var(--font-mono)',
