@@ -93,7 +93,7 @@ export default function ProjectsSection() {
                 padding: '1.75rem',
                 display: 'flex',
                 flexDirection: 'column',
-                justify: 'space-between',
+                justifyContent: 'space-between',
                 position: 'relative'
               }}
             >
