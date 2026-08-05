@@ -10,6 +10,7 @@ jobs:
   pr_agent_job:
     if: ${{ github.event.sender.type != 'Bot' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       issues: write
       pull-requests: write
