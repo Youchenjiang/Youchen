@@ -31,8 +31,8 @@ export default function ArticleReader({ post = {}, onBack }) {
   if (!post || !post.title) return null;
 
   const tags = Array.isArray(post.tags) ? post.tags : [];
-  // Convert markdown string to html safely
-  const htmlContent = marked.parse(post.content || '');
+  // Convert markdown string to html with sanitization to prevent XSS
+  const htmlContent = marked.parse(post.content || '', { sanitizer: marked.sanitizer.sanitize });
 
   return (
     <div style={{ padding: '2rem 0 4rem 0' }}>
