@@ -4,10 +4,14 @@ import { Terminal, Shield, Cpu, Code2, Sparkles, Copy, Check } from 'lucide-reac
 export default function HeroTerminal() {
   const [copied, setCopied] = useState(false);
 
-  const copyContact = () => {
-    navigator.clipboard.writeText('g1014308@gmail.com');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const copyContact = async () => {
+    try {
+      await navigator.clipboard.writeText('g1014308@gmail.com');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
   };
 
   return (
