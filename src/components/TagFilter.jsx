@@ -1,7 +1,18 @@
 import React from 'react';
 import { Tag, Filter } from 'lucide-react';
 
-export default function TagFilter({ tags, activeTag, onSelectTag }) {
+/**
+ * TagFilter Component
+ * Renders filter pill buttons for article categories and tags.
+ *
+ * @param {Object} props
+ * @param {string[]} [props.tags=[]] - List of tag labels
+ * @param {string} props.activeTag - Currently selected tag
+ * @param {Function} props.onSelectTag - Tag selection handler
+ */
+export default function TagFilter({ tags = [], activeTag, onSelectTag }) {
+  const safeTags = Array.isArray(tags) ? tags : [];
+
   return (
     <div style={{
       display: 'flex',
@@ -27,7 +38,7 @@ export default function TagFilter({ tags, activeTag, onSelectTag }) {
         <span>FILTER:</span>
       </div>
 
-      {tags.map((tag) => {
+      {safeTags.map((tag) => {
         const isActive = activeTag === tag;
         return (
           <button
