@@ -57,9 +57,9 @@ All Git commits MUST strictly adhere to the Conventional Commits format with man
   - Protected by GitHub Branch Protection rules. Direct pushing to `main` is strictly prohibited.
   - All changes must be submitted via Pull Requests (PRs).
 - **Feature & Task Branch Naming Conventions**:
-  - `feat/<feature-name>`: New UI or functional development (e.g. `feat/portfolio-grid`).
-  - `fix/<bug-name>`: Bug fixes (e.g. `fix/mobile-layout`).
-  - `docs/<doc-name>`: Documentation updates (e.g. `docs/deployment-guide`).
+  - `feat/<feature-name>`: New UI or functional development (e.g., `feat/portfolio-grid`).
+  - `fix/<bug-name>`: Bug fixes (e.g., `fix/mobile-layout`).
+  - `docs/<doc-name>`: Documentation updates (e.g., `docs/deployment-guide`).
   - `chore/<task-name>`: Configurations, CI/CD, and dependency updates.
 
 ---
