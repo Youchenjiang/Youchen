@@ -1,6 +1,7 @@
 name: Open Code Review (Alibaba)
 
 on:
+  workflow_dispatch:
   pull_request:
     types: [opened, synchronize, reopened]
 
