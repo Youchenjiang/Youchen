@@ -27,3 +27,4 @@ jobs:
           llm_model: ${{ secrets.OCR_LLM_MODEL }}
           llm_use_anthropic: 'false'
           language: 'Traditional Chinese'
+          incremental: 'true'
