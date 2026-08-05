@@ -40,4 +40,4 @@ App.jsx (Root State & Layout Container)
 ## 4. UI Performance & CSS Design System
 
 - **Design System (`src/styles/index.css`)**: Implements standard CSS custom variables for colors, fonts (`Fira Code` & `Inter`), and layout grids.
-- **Rendering Performance**: Uses `transform: translateZ(0)` to trigger GPU compositing layers, completely avoiding heavy `backdrop-filter: blur(...)` re-paints during window scrolling.
+- **Rendering Performance**: Uses `transform: translateZ(0)` to trigger GPU compositing layers, completely avoiding heavy `backdrop-filter: blur(...)` repaints during window scrolling.
