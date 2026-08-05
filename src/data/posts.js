@@ -1,4 +1,20 @@
-export const POSTS = [
+/**
+ * @typedef {Object} Post
+ * @property {string} id - Unique identifier
+ * @property {string} title - Article headline
+ * @property {string} subtitle - Optional subtitle
+ * @property {string} date - Publication date ISO string
+ * @property {string} readTime - Estimated reading duration
+ * @property {string} category - Primary classification tag
+ * @property {string[]} tags - Associated technology tags
+ * @property {boolean} [featured] - Whether highlighted as featured
+ * @property {string} author - Author name
+ * @property {string} summary - Short excerpt
+ * @property {string} content - Markdown formatted body
+ */
+
+/** @type {ReadonlyArray<Post>} */
+export const POSTS = Object.freeze([
   {
     id: "picoctf-web-exploitation-notes",
     title: "PicoCTF & Web Security 實戰解題思路與攻擊防禦筆記",
@@ -88,4 +104,4 @@ prompt = ChatPromptTemplate.from_messages([
 整合 AI 助手時，設計良好的 Prompt 與防範提示注入 (Prompt Injection) 攻擊同等重要！
 `
   }
-];
+]);
