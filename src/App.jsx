@@ -42,7 +42,7 @@ export default function App() {
   const currentPost = POSTS.find(p => p.id === selectedPostId);
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="app-container">
       {/* Grid background effect */}
       <div className="grid-bg"></div>
 
@@ -62,7 +62,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main style={{ flex: 1 }}>
+      <main className="main-content">
         {currentPost ? (
           <ArticleReader
             post={currentPost}
@@ -75,31 +75,13 @@ export default function App() {
 
             {/* View Switch: Blog Articles vs Projects Showcase */}
             {activeTab === 'blog' ? (
-              <section style={{ paddingBottom: '3rem' }}>
+              <section className="blog-section-padding">
                 <div className="container">
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginBottom: '1rem',
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-                    paddingBottom: '0.75rem'
-                  }}>
-                    <h3 style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '1.25rem',
-                      color: '#ffffff',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem'
-                    }}>
-                      <span style={{ color: 'var(--accent-green)' }}>[#]</span> LATEST RESEARCH & ARTICLES
+                  <div className="blog-header-container">
+                    <h3 className="blog-header-title">
+                      <span className="accent-green-text">[#]</span> LATEST RESEARCH & ARTICLES
                     </h3>
-                    <span style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.8rem',
-                      color: 'var(--text-muted)'
-                    }}>
+                    <span className="blog-header-count">
                       Total: {filteredPosts.length} post(s)
                     </span>
                   </div>
@@ -112,11 +94,7 @@ export default function App() {
                   />
 
                   {/* Article Grid */}
-                  <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-                    gap: '1.5rem'
-                  }}>
+                  <div className="blog-posts-grid">
                     {filteredPosts.map(post => (
                       <ArticleCard
                         key={post.id}
