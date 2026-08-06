@@ -87,8 +87,8 @@ export default function SearchModal({ isOpen = false, onClose, posts = [], onSel
                 }}
               >
                 <div className="search-modal-result-header">
-                  <span className="cyber-badge" style={{ fontSize: '0.65rem' }}>{post.category}</span>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                  <span className="cyber-badge search-modal-category-badge">{post.category}</span>
+                  <span className="search-modal-date">
                     {post.date}
                   </span>
                 </div>

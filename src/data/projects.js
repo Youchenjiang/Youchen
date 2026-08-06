@@ -22,6 +22,7 @@ export const PROJECTS = Object.freeze([
     tags: ["Python", "FastAPI", "LangChain", "Line Bot", "Redis"],
     featured: true,
     github: "https://github.com/Youchenjiang/Line-AI-Assistant",
+    demo: "https://line-ai-assistant.vercel.app",
     summary: "非同步處理 Line Webhook 請求，導入 Redis 集中式對話記憶庫與 Tool Calling 機制，支援即時網路搜尋、文件摘要與排程提醒。",
     highlights: [
       "非同步架構解決 Line 3 秒連線超時限制",
@@ -37,6 +38,7 @@ export const PROJECTS = Object.freeze([
     tags: ["JavaScript", "Full-Stack", "Automation", "GUI"],
     featured: true,
     github: "https://github.com/Youchenjiang/Clickra",
+    demo: "https://clickra.vercel.app",
     summary: "專為複雜操作流程設計的自動化控制系統，提供圖形化腳本配置、事件監聽與高效率排程自動化執行引擎。",
     highlights: [
       "模組化腳本事件處理與執行引擎",
@@ -66,7 +68,7 @@ export const PROJECTS = Object.freeze([
     category: "Full-Stack & Tools",
     tags: ["Python", "JavaScript", "Automation", "DevTools"],
     featured: false,
-    github: "https://github.com/Youchenjiang",
+    github: "https://github.com/Youchenjiang/script-method-list-utilities",
     summary: "彙整日常開發與研究中使用的自動化 Script 庫與 Method 清單管理模組，提升開發與實驗效率。",
     highlights: [
       "自動化數據清洗與分析腳本",
