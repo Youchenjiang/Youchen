@@ -16,7 +16,7 @@ export default function HeroTerminal() {
   };
 
   return (
-    <section style={{ padding: '2.5rem 0 1.5rem 0' }}>
+    <section className="hero-terminal">
       <div className="container">
         <div className="terminal-window">
           {/* Terminal Titlebar */}
@@ -26,100 +26,53 @@ export default function HeroTerminal() {
               <span className="dot dot-yellow"></span>
               <span className="dot dot-green"></span>
             </div>
-            <div style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.8rem',
-              color: 'var(--text-muted)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.4rem'
-            }}>
+            <div className="hero-terminal-header-info">
               <Terminal size={14} color="var(--accent-green)" />
               <span>youchen@cyber-lab:~ (zsh)</span>
             </div>
-            <div className="cyber-badge" style={{ fontSize: '0.65rem' }}>
+            <div className="cyber-badge hero-terminal-system-badge">
               ● SYSTEM ONLINE
             </div>
           </div>
 
           {/* Terminal Body */}
           <div className="terminal-body">
-            <div style={{ marginBottom: '0.75rem' }}>
+            <div className="hero-terminal-prompt-container">
               <span className="terminal-prompt">$</span>
-              <span style={{ color: 'var(--accent-cyan)' }}>whoami --verbose</span>
+              <span className="hero-terminal-command">whoami --verbose</span>
             </div>
 
-            <div style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderLeft: '3px solid var(--accent-green)',
-              padding: '1rem',
-              borderRadius: '0 8px 8px 0',
-              marginBottom: '1.25rem'
-            }}>
-              <h1 style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '1.5rem',
-                color: '#ffffff',
-                marginBottom: '0.5rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem'
-              }}>
-                Youchen Jiang (蔣侑宸)
+            <div className="hero-terminal-whoami-box">
+              <h1 className="hero-terminal-name">
+                Youchen Jiang (�蔣�侑�宸)
                 <Sparkles size={18} color="var(--accent-green)" />
               </h1>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
+              <p className="hero-terminal-title">
                 Master Student @ NCU Network Security Laboratory
               </p>
-              <div style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '0.5rem',
-                marginTop: '0.75rem'
-              }}>
+              <div className="hero-terminal-badges">
                 <span className="cyber-badge"><Shield size={12}/> Cybersecurity</span>
                 <span className="cyber-badge cyan"><Cpu size={12}/> AI Application</span>
                 <span className="cyber-badge purple"><Code2 size={12}/> Full-Stack Dev</span>
               </div>
             </div>
 
-            <div style={{ marginBottom: '0.75rem' }}>
+            <div className="hero-terminal-core-focus-label">
               <span className="terminal-prompt">$</span>
               <span>cat core_focus.txt</span>
             </div>
-            <div style={{
-              color: 'var(--text-secondary)',
-              fontSize: '0.9rem',
-              paddingLeft: '1rem',
-              marginBottom: '1.25rem'
-            }}>
-              主修程式碼安全自動化修復、LLM AI 應用落地方案、與 Web 攻擊防禦測試。在此分享近期的研究心得與實務筆記。
+            <div className="hero-terminal-core-focus-text">
+              主修程式�碼安全自動化修復、LLM AI �� 應用落地方案、與 Web � 攻擊防�禦�測試。在此分享近期的研究心得與實務�筆記。
             </div>
 
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              paddingTop: '0.75rem',
-              borderTop: '1px solid rgba(255,255,255,0.08)'
-            }}>
-              <div style={{ display: 'flex', gap: '1rem', fontSize: '0.85rem' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Location: <strong style={{ color: '#fff' }}>Taoyuan / Pingtung, TW</strong></span>
-                <span style={{ color: 'var(--text-muted)' }}>Status: <strong style={{ color: 'var(--accent-green)' }}>Building AI & Security Tools</strong></span>
+            <div className="hero-terminal-footer">
+              <div className="hero-terminal-footer-info">
+                <span className="hero-terminal-footer-label">Location: <strong className="hero-terminal-footer-value">Taoyuan / Pingtung, TW</strong></span>
+                <span className="hero-terminal-footer-label">Status: <strong className="hero-terminal-footer-value">Building AI & Security Tools</strong></span>
               </div>
               <button
                 onClick={copyContact}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  color: copied ? 'var(--accent-green)' : 'var(--text-muted)',
-                  cursor: 'pointer',
-                  fontSize: '0.8rem',
-                  fontFamily: 'var(--font-mono)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.3rem'
-                }}
+                className={`hero-terminal-copy-button ${copied ? 'copied' : 'default'}`}
               >
                 {copied ? <Check size={14}/> : <Copy size={14}/>}
                 <span>{copied ? '已複製 Email' : 'Copy Contact'}</span>
