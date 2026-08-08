@@ -69,21 +69,21 @@ export default function ArticleReader({ post = {}, onBack }) {
             <div className="article-reader-meta-left">
               <span className="article-reader-meta-icon-text color-white">
                 <User size={15} color="var(--accent-green)" />
-                {post.author}
+                {post.author || 'Youchen Jiang'}
               </span>
               <span className="article-reader-meta-icon-text color-text-secondary">
                 <Calendar size={15} />
-                {post.date}
+                {post.date || '2026-03-01'}
               </span>
               <span className="article-reader-meta-icon-text color-text-secondary">
                 <Clock size={15} />
-                {post.readTime}
+                {post.readTime || '5 min read'}
               </span>
             </div>
 
             <button
               onClick={copyArticleLink}
-              className={copied ? '' : ''}
+              className={`cyber-btn-outline ${copied ? 'copied-active' : ''}`}
             >
               {copied ? <Check size={16}/> : <Share2 size={16}/>}
               <span>{copied ? '連結已複製' : '分享文章'}</span>
