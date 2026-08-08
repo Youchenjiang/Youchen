@@ -17,7 +17,9 @@ export default function SearchModal({ isOpen = false, onClose, posts = [], onSel
   // Close on Escape key for accessibility
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose?.();
+      if (e.key === 'Escape') {
+        onClose?.();
+      }
     };
     if (isOpen) {
       window.addEventListener('keydown', handleKeyDown);
