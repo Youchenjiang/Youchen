@@ -1,7 +1,14 @@
-import React from 'react';
-import { Shield, Search, Terminal, Github, BookOpen, Layers, Code2 } from 'lucide-react';
-
-export default function Navbar({ activeTab, onChangeTab, onOpenSearch, onResetView }) {
+/**
+ * Navbar Component
+ * Main header navigation bar featuring brand identity, view switching tabs, search trigger, and GitHub link.
+ *
+ * @param {Object} props
+ * @param {string} props.activeTab - Currently active navigation tab ('terminal' | 'blog' | 'projects')
+ * @param {Function} props.onChangeTab - Tab change callback
+ * @param {Function} [props.onOpenSearch=()=>{}] - Callback to trigger search modal
+ * @param {Function} [props.onResetView=()=>{}] - Callback to reset view to home
+ */
+export default function Navbar({ activeTab, onChangeTab = () => {}, onOpenSearch = () => {}, onResetView = () => {} }) {
   return (
     <header className="navbar-header">
       <div className="navbar-container">
