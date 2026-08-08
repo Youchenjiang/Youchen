@@ -3,15 +3,19 @@ import { Terminal, Shield, Cpu, Code2, Sparkles, Copy, Check } from 'lucide-reac
 
 export default function HeroTerminal() {
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
 
   const copyContact = async () => {
     try {
       const email = import.meta.env.VITE_CONTACT_EMAIL || 'g1014308@gmail.com';
       await navigator.clipboard.writeText(email);
       setCopied(true);
+      setCopyError(false);
       setTimeout(() => setCopied(false), 2000);
     } catch {
       setCopied(false);
+      setCopyError(true);
+      setTimeout(() => setCopyError(false), 2000);
     }
   };
 
@@ -72,10 +76,10 @@ export default function HeroTerminal() {
               </div>
               <button
                 onClick={copyContact}
-                className={`hero-terminal-copy-button ${copied ? 'copied' : 'default'}`}
+                className={`hero-terminal-copy-button ${copied ? 'copied' : copyError ? 'error' : 'default'}`}
               >
                 {copied ? <Check size={14}/> : <Copy size={14}/>}
-                <span>{copied ? '已複製 Email' : 'Copy Contact'}</span>
+                <span>{copied ? '已複製 Email' : copyError ? '複製失敗，請重試' : 'Copy Contact'}</span>
               </button>
             </div>
           </div>
