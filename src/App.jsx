@@ -21,10 +21,10 @@ export default function App() {
       e.preventDefault();
       setIsSearchOpen((prev) => !prev);
     }
-    if (e.key === 'Escape' && isSearchOpen) {
+    if (e.key === 'Escape') {
       setIsSearchOpen(false);
     }
-  }, [isSearchOpen]);
+  }, []);
 
   useEffect(() => {
     window.addEventListener('keydown', handleGlobalKeyDown);
