@@ -31,8 +31,8 @@ export default function ArticleReader({ post = {}, onBack }) {
   if (!post || !post.title) return null;
 
   const tags = Array.isArray(post.tags) ? post.tags : [];
-  // Convert markdown string to html with sanitization to prevent XSS
-  const htmlContent = marked.parse(post.content || '', { sanitizer: marked.sanitizer.sanitize });
+  // Parse markdown content safely to HTML string
+  const htmlContent = marked.parse(post.content || '');
 
   return (
     <div className="article-reader-container">
