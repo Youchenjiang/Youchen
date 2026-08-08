@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Navbar from './components/Navbar';
 import HeroTerminal from './components/HeroTerminal';
 import TagFilter from './components/TagFilter';
@@ -32,12 +32,15 @@ export default function App() {
   }, [handleGlobalKeyDown]);
 
   // Extract all unique tags for blog
-  const allTags = ['ALL', ...Array.from(new Set(POSTS.flatMap(p => [p.category, ...p.tags])))];
+  const allTags = useMemo(() => {
+    return ['ALL', ...Array.from(new Set(POSTS.flatMap(p => [p.category, ...(p.tags || [])])))];
+  }, []);
 
-  // Filter posts based on active tag
-  const filteredPosts = activeTag === 'ALL'
-    ? POSTS
-    : POSTS.filter(p => p.category === activeTag || p.tags.includes(activeTag));
+  // Filter posts based on active tag with null guard
+  const filteredPosts = useMemo(() => {
+    if (!activeTag || activeTag === 'ALL') return POSTS;
+    return POSTS.filter(p => p.category === activeTag || (Array.isArray(p.tags) && p.tags.includes(activeTag)));
+  }, [activeTag]);
 
   const currentPost = POSTS.find(p => p.id === selectedPostId);
 
