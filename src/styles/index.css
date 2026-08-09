@@ -591,6 +591,114 @@ body {
   font-weight: 700;
 }
 
+/* Article Card Styles */
+.article-card {
+  min-height: 320px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  cursor: pointer;
+}
+
+.article-featured-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  margin-bottom: 0.9rem;
+  color: var(--accent-green);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.article-tag {
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.article-title {
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.article-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.article-meta,
+.article-meta-left,
+.article-meta-item,
+.article-action {
+  display: flex;
+  align-items: center;
+}
+
+.article-meta {
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.article-meta-left {
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  color: var(--text-muted);
+}
+
+.article-meta-item,
+.article-action {
+  gap: 0.35rem;
+}
+
+.article-action {
+  flex-shrink: 0;
+  color: var(--accent-green);
+  font-weight: 600;
+  transition: transform var(--transition-fast);
+}
+
+.article-card:hover .article-action {
+  transform: translateX(3px);
+}
+
+@media (max-width: 640px) {
+  .article-card {
+    min-height: 0;
+    padding: 1.25rem;
+  }
+
+  .article-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
 /* Search Modal Styles */
 .search-modal-overlay {
   position: fixed;

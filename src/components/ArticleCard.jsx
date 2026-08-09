@@ -16,7 +16,7 @@ export default function ArticleCard({ post = {}, onSelectPost }) {
 
   return (
     <article
-      className="glass-card"
+      className="article-card glass-card"
       onClick={() => onSelectPost?.(post.id)}
     >
       {post.featured && (
