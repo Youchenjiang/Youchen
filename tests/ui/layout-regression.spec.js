@@ -21,6 +21,17 @@ test('keeps navigation usable and content inside the viewport', async ({ page })
   await expect(page.getByRole('link', { name: 'GitHub 個人頁面' })).toBeVisible();
   await expectNoHorizontalOverflow(page);
 
+  const header = await page.locator('.navbar-header').boundingBox();
+  expect(header).not.toBeNull();
+  if ((await page.viewportSize()).width > 640) {
+    expect(header.height).toBeLessThanOrEqual(71);
+  }
+  if ((await page.viewportSize()).width === 1140) {
+    const tagline = await page.locator('.navbar-brand-tagline').boundingBox();
+    expect(tagline).not.toBeNull();
+    expect(tagline.height).toBeLessThanOrEqual(34);
+  }
+
   await page.getByRole('button', { name: 'Projects 作品集' }).click();
   await expect(page.locator('.projects-card')).toHaveCount(4);
   await expectNoHorizontalOverflow(page);

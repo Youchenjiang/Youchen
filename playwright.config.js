@@ -20,6 +20,10 @@ export default defineConfig({
       name: 'mobile-chromium',
       use: { ...devices['Desktop Chrome'], viewport: { width: 390, height: 844 } },
     },
+    {
+      name: 'compact-desktop-chromium',
+      use: { ...devices['Desktop Chrome'], viewport: { width: 1140, height: 900 } },
+    },
   ],
   webServer: {
     command: 'npm run dev -- --host 127.0.0.1 --port 4173',
