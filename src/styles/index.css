@@ -813,7 +813,10 @@ body {
 }
 
 .article-reader-content {
-  max-width: 840px;
+  width: 100%;
+  max-width: 888px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .article-reader-back-button {
@@ -921,6 +924,49 @@ body {
 
 .article-reader-content-section {
   padding: 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .article-reader-container {
+    padding-top: 1.25rem;
+  }
+
+  .article-reader-content {
+    padding: 0 0.85rem;
+  }
+
+  .article-reader-back-button {
+    margin-bottom: 1.25rem;
+  }
+
+  .article-reader-header,
+  .article-reader-content-section {
+    padding: 1.25rem;
+  }
+
+  .article-reader-title {
+    font-size: 1.65rem;
+  }
+
+  .article-reader-subtitle {
+    font-size: 1rem;
+  }
+
+  .article-reader-meta-section {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .article-reader-meta-left {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .article-reader-meta-section > .cyber-btn-outline {
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 /* Footer Styles */
