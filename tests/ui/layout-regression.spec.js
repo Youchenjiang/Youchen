@@ -42,6 +42,7 @@ test('keeps navigation usable and content inside the viewport', async ({ page })
 
   await page.getByRole('button', { name: 'Blog 文章' }).click();
   await expect(page.locator('.article-card')).toHaveCount(2);
+  await expect(page.getByRole('button', { name: 'ALL', exact: true })).toHaveCount(1);
 });
 
 test('opens search and preserves readable article geometry', async ({ page }, testInfo) => {
