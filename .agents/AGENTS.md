@@ -56,6 +56,8 @@ All Git commits MUST strictly adhere to the Conventional Commits format with man
 - **`main` (Production Branch)**:
   - Protected by GitHub Branch Protection rules. Direct pushing to `main` is strictly prohibited.
   - All changes must be submitted via Pull Requests (PRs).
+- **Mandatory User Confirmation Before Push**:
+  - NEVER execute `git push` to any remote branch without explicitly requesting and receiving User approval first.
 - **Feature & Task Branch Naming Conventions**:
   - `feat/<feature-name>`: New UI or functional development (e.g., `feat/portfolio-grid`).
   - `fix/<bug-name>`: Bug fixes (e.g., `fix/mobile-layout`).
