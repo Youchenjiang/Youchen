@@ -48,7 +48,7 @@ export default function HeroTerminal() {
 
             <div className="hero-terminal-whoami-box">
               <h1 className="hero-terminal-name">
-                Youchen Jiang (�蔣�侑�宸)
+                Youchen Jiang (蔣侑宸)
                 <Sparkles size={18} color="var(--accent-green)" />
               </h1>
               <p className="hero-terminal-title">
@@ -66,7 +66,7 @@ export default function HeroTerminal() {
               <span>cat core_focus.txt</span>
             </div>
             <div className="hero-terminal-core-focus-text">
-              主修程式�碼安全自動化修復、LLM AI �� 應用落地方案、與 Web � 攻擊防�禦�測試。在此分享近期的研究心得與實務�筆記。
+              主修程式碼安全自動化修復、LLM AI 應用落地方案、與 Web 攻擊防禦測試。在此分享近期的研究心得與實務筆記。
             </div>
 
             <div className="hero-terminal-footer">
