@@ -1365,10 +1365,12 @@ body {
 }
 
 .projects-card {
+  min-height: 520px;
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 1.5rem;
   position: relative;
 }
 
@@ -1406,10 +1408,16 @@ body {
   color: var(--text-secondary);
   font-size: 0.92rem;
   line-height: 1.6;
+  display: -webkit-box;
+  min-height: 4.42rem;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   margin-bottom: 1.25rem;
 }
 
 .projects-highlights {
+  min-height: 136px;
   background: rgba(255, 255, 255, 0.02);
   border-radius: 8px;
   padding: 0.8rem 1rem;
@@ -1440,7 +1448,9 @@ body {
 
 .projects-tags {
   display: flex;
+  align-content: flex-start;
   flex-wrap: wrap;
+  min-height: 2.1rem;
   gap: 0.4rem;
   margin-bottom: 1rem;
 }
@@ -1470,4 +1480,15 @@ body {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+}
+
+@media (max-width: 640px) {
+  .projects-card {
+    min-height: 0;
+    padding: 1.25rem;
+  }
+
+  .projects-highlights {
+    min-height: 0;
+  }
 }

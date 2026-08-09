@@ -38,6 +38,22 @@ test('keeps navigation usable and content inside the viewport', async ({ page })
   await expect(page.locator('.hero-terminal')).toHaveClass(/compact/);
   const compactHero = await page.locator('.hero-terminal').boundingBox();
   expect(compactHero.height).toBeLessThan(fullHero.height);
+  if ((await page.viewportSize()).width > 640) {
+    const cardLayout = await page.locator('.projects-card').evaluateAll((cards) =>
+      cards.map((card) => {
+        const cardRect = card.getBoundingClientRect();
+        const footerRect = card.querySelector('.projects-footer').getBoundingClientRect();
+        const summaryRect = card.querySelector('.projects-summary').getBoundingClientRect();
+        return {
+          footerBottomGap: Math.round(cardRect.bottom - footerRect.bottom),
+          summaryHeight: Math.round(summaryRect.height),
+        };
+      }),
+    );
+    const footerGaps = cardLayout.map(({ footerBottomGap }) => footerBottomGap);
+    expect(Math.max(...footerGaps) - Math.min(...footerGaps)).toBeLessThanOrEqual(1);
+    expect(cardLayout.every(({ summaryHeight }) => summaryHeight <= 72)).toBe(true);
+  }
   await expectNoHorizontalOverflow(page);
 
   await page.getByRole('button', { name: 'Blog 文章' }).click();
