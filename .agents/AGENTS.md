@@ -56,8 +56,9 @@ All Git commits MUST strictly adhere to the Conventional Commits format with man
 - **`main` (Production Branch)**:
   - Protected by GitHub Branch Protection rules. Direct pushing to `main` is strictly prohibited.
   - All changes must be submitted via Pull Requests (PRs).
-- **Mandatory User Confirmation Before Push**:
-  - NEVER execute `git push` to any remote branch without explicitly requesting and receiving User approval first.
+- **Mandatory User Confirmation Before Push (AI Assistants Only)**:
+  - **Scope**: Applies strictly to AI coding assistants. Automated GitHub Actions CI/CD workflows and deployment bots are exempt.
+  - **Requirement**: AI assistants must NEVER execute `git push` to any remote branch without explicitly receiving prior approval from the User in chat (e.g., explicit confirmation like "ok", "yes", "push it", or "agree").
 - **Feature & Task Branch Naming Conventions**:
   - `feat/<feature-name>`: New UI or functional development (e.g., `feat/portfolio-grid`).
   - `fix/<bug-name>`: Bug fixes (e.g., `fix/mobile-layout`).
