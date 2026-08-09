@@ -614,7 +614,28 @@ body {
   flex-direction: column;
   justify-content: space-between;
   gap: 1.5rem;
+  position: relative;
   cursor: pointer;
+}
+
+.article-card-hit-area {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.article-card-hit-area:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+}
+
+.article-card:focus-within {
+  border-color: var(--border-active);
+  box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.25), 0 8px 30px rgba(0, 240, 255, 0.12);
 }
 
 .article-featured-badge {

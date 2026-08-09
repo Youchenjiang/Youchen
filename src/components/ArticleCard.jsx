@@ -17,8 +17,13 @@ export default function ArticleCard({ post = {}, onSelectPost }) {
   return (
     <article
       className="article-card glass-card"
-      onClick={() => onSelectPost?.(post.id)}
     >
+      <button
+        type="button"
+        className="article-card-hit-area"
+        onClick={() => onSelectPost?.(post.id)}
+        aria-label={`閱讀文章：${post.title}`}
+      />
       {post.featured && (
         <div className="article-featured-badge">
           <Star size={12} fill="var(--accent-green)"/>

@@ -51,7 +51,7 @@ test('opens search and preserves readable article geometry', async ({ page }, te
   await expectNoHorizontalOverflow(page);
   await page.keyboard.press('Escape');
 
-  await page.getByRole('heading', { name: articleTitle }).click();
+  await page.getByRole('button', { name: `閱讀文章：${articleTitle}` }).click();
   await expect(page.locator('.article-reader-title')).toBeVisible();
   await expectNoHorizontalOverflow(page);
 
@@ -64,6 +64,14 @@ test('opens search and preserves readable article geometry', async ({ page }, te
     const rightGap = testInfo.project.use.viewport.width - reader.x - reader.width;
     expect(Math.abs(reader.x - rightGap)).toBeLessThanOrEqual(2);
   }
+});
+
+test('opens article cards with keyboard controls', async ({ page }) => {
+  const articleButton = page.getByRole('button', { name: `閱讀文章：${articleTitle}` });
+  await articleButton.focus();
+  await expect(articleButton).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.article-reader-title')).toHaveText(articleTitle);
 });
 
 test('renders all user-facing copy without replacement characters', async ({ page }) => {
