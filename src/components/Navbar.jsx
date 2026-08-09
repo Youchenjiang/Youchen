@@ -1,3 +1,5 @@
+import { Shield, BookOpen, Layers, Search, Github } from 'lucide-react';
+
 /**
  * Navbar Component
  * Main header navigation bar featuring brand identity, view switching tabs, search trigger, and GitHub link.
