@@ -1143,6 +1143,67 @@ body {
   color: var(--accent-green);
 }
 
+@media (max-width: 640px) {
+  .hero-terminal {
+    padding-top: 1.5rem;
+  }
+
+  .terminal-header {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    padding: 0.75rem;
+  }
+
+  .hero-terminal-header-info {
+    order: 3;
+    justify-content: center;
+    width: 100%;
+    font-size: 0.72rem;
+  }
+
+  .hero-terminal-system-badge {
+    margin-left: auto;
+  }
+
+  .terminal-body {
+    padding: 1rem;
+  }
+
+  .hero-terminal-whoami-box {
+    padding: 0.9rem;
+  }
+
+  .hero-terminal-name {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    font-size: 1.25rem;
+  }
+
+  .hero-terminal-core-focus-text {
+    padding-left: 0;
+    line-height: 1.7;
+  }
+
+  .hero-terminal-footer {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero-terminal-footer-info {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .hero-terminal-copy-button {
+    justify-content: center;
+    width: 100%;
+    padding: 0.55rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+  }
+}
+
 /* Projects Section Styles */
 .projects-section {
   padding-bottom: 3rem;
