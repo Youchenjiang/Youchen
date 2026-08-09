@@ -380,6 +380,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .navbar-brand {
@@ -409,6 +414,15 @@ body {
 .navbar-tabs {
   display: flex;
   gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .navbar-tab {
@@ -469,6 +483,66 @@ body {
   padding: 0.1rem 0.4rem;
   border-radius: 4px;
   border: 1px solid rgba(0, 255, 102, 0.3);
+}
+
+.navbar-github-link {
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .navbar-container {
+    gap: 0.75rem;
+    padding: 0 1rem;
+  }
+
+  .navbar-brand-tagline,
+  .navbar-search-btn > span,
+  .navbar-shortcut {
+    display: none;
+  }
+
+  .navbar-brand-text {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar-container {
+    height: auto;
+    min-height: 64px;
+    flex-wrap: wrap;
+    row-gap: 0;
+    padding-top: 0.65rem;
+  }
+
+  .navbar-brand-bg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .navbar-actions {
+    margin-left: auto;
+  }
+
+  .navbar-github-link {
+    padding: 0.55rem;
+  }
+
+  .navbar-github-link span {
+    display: none;
+  }
+
+  .navbar-tabs {
+    order: 3;
+    width: 100%;
+    padding: 0.65rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .navbar-tab {
+    flex: 1;
+    justify-content: center;
+  }
 }
 
 /* Tag Filter Styles */
