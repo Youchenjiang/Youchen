@@ -90,6 +90,16 @@ test('opens article cards with keyboard controls', async ({ page }) => {
   await expect(page.locator('.article-reader-title')).toHaveText(articleTitle);
 });
 
+test('respects reduced motion preferences', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.reload();
+  const transitionDuration = await page.locator('.article-card').first().evaluate(
+    (card) => Number.parseFloat(getComputedStyle(card).transitionDuration),
+  );
+  expect(transitionDuration).toBeLessThanOrEqual(0.00001);
+  await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'auto');
+});
+
 test('renders all user-facing copy without replacement characters', async ({ page }) => {
   await expect(page.locator('body')).not.toContainText('�');
   await expect(page.locator('.hero-terminal-name')).toContainText('蔣侑宸');

@@ -14,7 +14,8 @@ export default function ArticleReader({ post = {}, onBack }) {
   const [copied, setCopied] = React.useState(false);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
   }, [post]);
 
   const copyArticleLink = async () => {
