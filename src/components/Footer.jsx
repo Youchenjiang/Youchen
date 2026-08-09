@@ -30,7 +30,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-copyright">
-          © {year} Youchen Jiang (�蔣�侑�宸). All Rights Reserved.
+          © {year} Youchen Jiang (蔣侑宸). All Rights Reserved.
         </div>
       </div>
     </footer>
