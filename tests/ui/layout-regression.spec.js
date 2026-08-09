@@ -82,6 +82,17 @@ test('opens search and preserves readable article geometry', async ({ page }, te
   }
 });
 
+test('navigates search results with keyboard controls', async ({ page }) => {
+  await page.getByRole('button', { name: '搜尋文章' }).click();
+  const searchInput = page.locator('.search-modal-input');
+  const titles = await page.locator('.search-modal-result-title').allTextContents();
+
+  await searchInput.press('ArrowDown');
+  await expect(page.locator('.search-modal-result-item.active .search-modal-result-title')).toHaveText(titles[1]);
+  await searchInput.press('Enter');
+  await expect(page.locator('.article-reader-title')).toHaveText(titles[1]);
+});
+
 test('opens article cards with keyboard controls', async ({ page }) => {
   const articleButton = page.getByRole('button', { name: `閱讀文章：${articleTitle}` });
   await articleButton.focus();

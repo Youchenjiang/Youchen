@@ -811,18 +811,28 @@ body {
 }
 
 .search-modal-result-item {
+  width: 100%;
   padding: 1rem;
   border-radius: 8px;
   cursor: pointer;
+  font: inherit;
+  text-align: left;
   background: rgba(255,255,255,0.02);
   margin-bottom: 0.5rem;
   border: 1px solid transparent;
   transition: all 0.2s;
 }
 
-.search-modal-result-item:hover {
+.search-modal-result-item:hover,
+.search-modal-result-item.active,
+.search-modal-result-item:focus-visible {
   background: rgba(0, 255, 102, 0.05);
   border-color: rgba(0, 255, 102, 0.3);
+}
+
+.search-modal-result-item:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
 }
 
 .search-modal-result-header {

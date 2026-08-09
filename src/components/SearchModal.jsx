@@ -13,26 +13,7 @@ import { Search, X } from 'lucide-react';
  */
 export default function SearchModal({ isOpen = false, onClose, posts = [], onSelectPost }) {
   const [query, setQuery] = useState('');
-
-  // Close on Escape key for accessibility
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        onClose?.();
-      }
-    };
-    if (isOpen) {
-      window.addEventListener('keydown', handleKeyDown);
-    }
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
-
-  // Reset query when modal opens
-  useEffect(() => {
-    if (isOpen) setQuery('');
-  }, [isOpen]);
-
-  if (!isOpen) return null;
+  const [activeResultIndex, setActiveResultIndex] = useState(0);
 
   const safePosts = Array.isArray(posts) ? posts : [];
   const filteredPosts = safePosts.filter(post => {
@@ -43,6 +24,50 @@ export default function SearchModal({ isOpen = false, onClose, posts = [], onSel
     const tagMatch = post.tags?.some(t => t.toLowerCase().includes(q)) ?? false;
     return titleMatch || summaryMatch || tagMatch;
   });
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose?.();
+        return;
+      }
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setActiveResultIndex((index) => Math.min(index + 1, filteredPosts.length - 1));
+        return;
+      }
+
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setActiveResultIndex((index) => Math.max(index - 1, 0));
+        return;
+      }
+
+      if (e.key === 'Enter' && filteredPosts[activeResultIndex]) {
+        e.preventDefault();
+        onSelectPost?.(filteredPosts[activeResultIndex].id);
+        onClose?.();
+      }
+    };
+    if (isOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeResultIndex, filteredPosts, isOpen, onClose, onSelectPost]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setQuery('');
+      setActiveResultIndex(0);
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    setActiveResultIndex(0);
+  }, [query]);
+
+  if (!isOpen) return null;
 
   return (
     <div className="search-modal-overlay">
@@ -57,36 +82,36 @@ export default function SearchModal({ isOpen = false, onClose, posts = [], onSel
             onChange={(e) => setQuery(e.target.value)}
             autoFocus
             className="search-modal-input"
+            aria-label="搜尋文章"
+            aria-controls="search-results"
           />
           <button
             onClick={onClose}
             className="search-modal-close-button"
+            aria-label="關閉搜尋"
           >
             <X size={20} />
           </button>
         </div>
 
         {/* Results List */}
-        <div className="search-modal-results">
+        <div id="search-results" className="search-modal-results" aria-live="polite">
           {filteredPosts.length === 0 ? (
             <div className="search-modal-no-results">
               無匹配的文章結果
             </div>
           ) : (
-            filteredPosts.map(post => (
-              <div
+            filteredPosts.map((post, index) => (
+              <button
+                type="button"
                 key={post.id}
                 onClick={() => {
-                  onSelectPost(post.id);
+                  onSelectPost?.(post.id);
                   onClose();
                 }}
-                className="search-modal-result-item"
-                onMouseEnter={(e) => {
-                  e.currentTarget.classList.add('search-modal-result-item-hover');
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.classList.remove('search-modal-result-item-hover');
-                }}
+                className={`search-modal-result-item ${index === activeResultIndex ? 'active' : ''}`}
+                onFocus={() => setActiveResultIndex(index)}
+                onMouseEnter={() => setActiveResultIndex(index)}
               >
                 <div className="search-modal-result-header">
                   <span className="cyber-badge search-modal-category-badge">{post.category}</span>
@@ -100,7 +125,7 @@ export default function SearchModal({ isOpen = false, onClose, posts = [], onSel
                 <p className="search-modal-result-summary">
                   {post.summary.slice(0, 80)}...
                 </p>
-              </div>
+              </button>
             ))
           )}
         </div>
