@@ -1,0 +1,32 @@
+name: PR Agent
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  issue_comment:
+    types: [created]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pr_agent_job:
+    if: ${{ github.event.sender.type != 'Bot' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      issues: write
+      pull-requests: write
+    name: Run PR Agent on PR
+    steps:
+      - name: PR Agent action step
+        id: pragent
+        uses: Codium-ai/pr-agent@main
+        env:
+          OPENAI_KEY: ${{ secrets.OCR_LLM_TOKEN }}
+          OPENAI_API_BASE: ${{ secrets.OCR_LLM_URL }}
+          CONFIG__MODEL: ${{ secrets.OCR_LLM_MODEL }}
+          CONFIG__CUSTOM_MODEL_MAX_TOKENS: "65536"
+          CONFIG__PR_ACTIONS: '["opened", "reopened", "ready_for_review", "synchronize"]'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
