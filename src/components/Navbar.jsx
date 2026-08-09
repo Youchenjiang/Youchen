@@ -1,6 +1,8 @@
+import { Shield, BookOpen, Layers, Search, Github } from 'lucide-react';
+
 /**
  * Navbar Component
- * Main header navigation bar featuring brand identity, view switching tabs, search trigger, and GitHub link.
+ * Main header navigation bar featuring brand identity, view switching tabs, search modal, and GitHub link.
  *
  * @param {Object} props
  * @param {string} props.activeTab - Currently active navigation tab ('terminal' | 'blog' | 'projects')
