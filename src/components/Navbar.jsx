@@ -20,7 +20,7 @@ export default function Navbar({ activeTab, onChangeTab = () => {}, onOpenSearch
           className="navbar-brand"
         >
           <div className="navbar-brand-bg">
-            <Shield size={22} color="var(--accent-green)" />
+            <Shield size={21} color="var(--accent-green)" strokeWidth={2.1} />
           </div>
           <div className="navbar-brand-text">
             <span className="navbar-brand-name">
