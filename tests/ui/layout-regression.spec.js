@@ -32,8 +32,12 @@ test('keeps navigation usable and content inside the viewport', async ({ page })
     expect(tagline.height).toBeLessThanOrEqual(34);
   }
 
+  const fullHero = await page.locator('.hero-terminal').boundingBox();
   await page.getByRole('button', { name: 'Projects 作品集' }).click();
   await expect(page.locator('.projects-card')).toHaveCount(4);
+  await expect(page.locator('.hero-terminal')).toHaveClass(/compact/);
+  const compactHero = await page.locator('.hero-terminal').boundingBox();
+  expect(compactHero.height).toBeLessThan(fullHero.height);
   await expectNoHorizontalOverflow(page);
 
   await page.getByRole('button', { name: 'Blog 文章' }).click();

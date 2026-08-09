@@ -74,7 +74,7 @@ export default function App() {
         ) : (
           <>
             {/* Terminal Hero Profile Banner */}
-            <HeroTerminal />
+            <HeroTerminal compact={activeTab === 'projects'} />
 
             {/* View Switch: Blog Articles vs Projects Showcase */}
             {activeTab === 'blog' ? (

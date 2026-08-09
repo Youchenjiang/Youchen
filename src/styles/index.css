@@ -1158,6 +1158,48 @@ body {
   color: var(--accent-green);
 }
 
+.hero-terminal.compact {
+  padding: 1.5rem 0 1rem;
+}
+
+.hero-terminal.compact .terminal-body {
+  padding: 1rem 1.25rem;
+}
+
+.hero-terminal.compact .hero-terminal-prompt-container,
+.hero-terminal.compact .hero-terminal-core-focus-label,
+.hero-terminal.compact .hero-terminal-core-focus-text,
+.hero-terminal.compact .hero-terminal-footer {
+  display: none;
+}
+
+.hero-terminal.compact .hero-terminal-whoami-box {
+  display: grid;
+  grid-template-areas:
+    'name badges'
+    'title badges';
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 1.5rem;
+  margin-bottom: 0;
+}
+
+.hero-terminal.compact .hero-terminal-name {
+  grid-area: name;
+  margin-bottom: 0.2rem;
+  font-size: 1.25rem;
+}
+
+.hero-terminal.compact .hero-terminal-title {
+  grid-area: title;
+}
+
+.hero-terminal.compact .hero-terminal-badges {
+  grid-area: badges;
+  justify-content: flex-end;
+  margin-top: 0;
+}
+
 @media (max-width: 640px) {
   .hero-terminal {
     padding-top: 1.5rem;
@@ -1216,6 +1258,15 @@ body {
     padding: 0.55rem;
     border: 1px solid var(--border-color);
     border-radius: 6px;
+  }
+
+  .hero-terminal.compact .hero-terminal-whoami-box {
+    display: block;
+  }
+
+  .hero-terminal.compact .hero-terminal-badges {
+    justify-content: flex-start;
+    margin-top: 0.75rem;
   }
 }
 

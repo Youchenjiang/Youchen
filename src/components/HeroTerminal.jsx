@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Terminal, Shield, Cpu, Code2, Sparkles, Copy, Check } from 'lucide-react';
 
-export default function HeroTerminal() {
+export default function HeroTerminal({ compact = false }) {
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
 
@@ -20,7 +20,7 @@ export default function HeroTerminal() {
   };
 
   return (
-    <section className="hero-terminal">
+    <section className={`hero-terminal ${compact ? 'compact' : ''}`}>
       <div className="container">
         <div className="terminal-window">
           {/* Terminal Titlebar */}
