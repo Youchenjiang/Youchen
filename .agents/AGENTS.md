@@ -71,3 +71,14 @@ All Git commits MUST strictly adhere to the Conventional Commits format with man
 
 - **Base Path Maintenance**: Maintain `base: '/Youchen/'` in `vite.config.js` for GitHub Pages hosting (`https://youchenjiang.github.io/Youchen/`).
 - **Automated Workflow**: Merging PRs into `main` branch triggers `.github/workflows/deploy.yml` for GitHub Pages deployment.
+
+---
+
+## 6. UI Regression Safeguards
+
+- **Mandatory UI Verification**: Any change to layout CSS, responsive breakpoints, or user-facing JSX structure MUST run `npm run test:ui` before commit.
+- **No Broad Blind Rewrites**: Do not replace or reformat large sections of `src/styles/index.css` without first identifying the affected components and preserving unrelated selectors.
+- **Required Viewports**: UI changes MUST remain valid in both the desktop Chromium and 390px mobile Chromium projects defined in `playwright.config.js`.
+- **Protected Journeys**: Navigation switching, search modal behavior, article cards, article reading layout, horizontal overflow, and UTF-8 user-facing text MUST remain covered by the UI regression suite.
+- **Failure Evidence**: When a UI regression check fails, inspect the saved Playwright screenshot and trace before modifying styles further.
+- **Specificity Discipline**: Avoid inline style overrides and new `!important` declarations unless the commit body documents why normal component-level specificity cannot solve the issue.
