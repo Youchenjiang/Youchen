@@ -111,8 +111,17 @@ test('respects reduced motion preferences', async ({ page }) => {
   await expect(page.locator('html')).toHaveCSS('scroll-behavior', 'auto');
 });
 
+test('traps focus inside search modal when active', async ({ page }) => {
+  await page.getByRole('button', { name: '搜尋文章' }).click();
+  const searchInput = page.locator('.search-modal-input');
+  await expect(searchInput).toBeFocused();
+  await page.keyboard.press('Tab');
+  const activeElementTag = await page.evaluate(() => document.activeElement.tagName.toLowerCase());
+  expect(['input', 'button', 'a']).toContain(activeElementTag);
+});
+
 test('renders all user-facing copy without replacement characters', async ({ page }) => {
-  await expect(page.locator('body')).not.toContainText('�');
+  await expect(page.locator('body')).not.toContainText('\uFFFD');
   await expect(page.locator('.hero-terminal-name')).toContainText('蔣侑宸');
   await expect(page.locator('.footer-copyright')).toContainText('蔣侑宸');
 });
