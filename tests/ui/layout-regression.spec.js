@@ -17,8 +17,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('keeps navigation usable and content inside the viewport', async ({ page }) => {
-  await expect(page.getByRole('button', { name: '搜尋文章' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'GitHub 個人頁面' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Search articles' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'GitHub profile' })).toBeVisible();
   await expectNoHorizontalOverflow(page);
 
   const header = await page.locator('.navbar-header').boundingBox();
@@ -62,7 +62,7 @@ test('keeps navigation usable and content inside the viewport', async ({ page })
 });
 
 test('opens search and preserves readable article geometry', async ({ page }, testInfo) => {
-  await page.getByRole('button', { name: '搜尋文章' }).click();
+  await page.getByRole('button', { name: 'Search articles' }).click();
   await expect(page.locator('.search-modal-overlay')).toBeVisible();
   await expectNoHorizontalOverflow(page);
   await page.keyboard.press('Escape');
@@ -83,7 +83,7 @@ test('opens search and preserves readable article geometry', async ({ page }, te
 });
 
 test('navigates search results with keyboard controls', async ({ page }) => {
-  await page.getByRole('button', { name: '搜尋文章' }).click();
+  await page.getByRole('button', { name: 'Search articles' }).click();
   const searchInput = page.locator('.search-modal-input');
   const titles = await page.locator('.search-modal-result-title').allTextContents();
 
@@ -112,7 +112,7 @@ test('respects reduced motion preferences', async ({ page }) => {
 });
 
 test('traps focus inside search modal when active', async ({ page }) => {
-  await page.getByRole('button', { name: '搜尋文章' }).click();
+  await page.getByRole('button', { name: 'Search articles' }).click();
   const searchInput = page.locator('.search-modal-input');
   await expect(searchInput).toBeFocused();
   await page.keyboard.press('Tab');

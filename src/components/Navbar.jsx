@@ -56,7 +56,7 @@ export default function Navbar({ activeTab, onChangeTab = () => {}, onOpenSearch
           <button
             className="navbar-search-btn"
             onClick={onOpenSearch}
-            aria-label="搜尋文章"
+            aria-label="Search articles"
           >
             <Search size={16} color="var(--accent-green)" />
             <span>搜尋...</span>
@@ -68,7 +68,7 @@ export default function Navbar({ activeTab, onChangeTab = () => {}, onOpenSearch
             target="_blank"
             rel="noreferrer"
             className="cyber-btn-outline navbar-github-link"
-            aria-label="GitHub 個人頁面"
+            aria-label="GitHub profile"
           >
             <Github size={16} />
             <span>GitHub</span>
