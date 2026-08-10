@@ -32,7 +32,7 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+        run: npx --no-install @playwright/test@1.62.1 install --with-deps chromium
 
       - name: Run UI regression suite
         run: npm run test:ui
