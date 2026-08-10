@@ -7,7 +7,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? 'github' : 'list',
   use: {
-    baseURL: 'http://127.0.0.1:4173/Youchen/',
+    baseURL: process.env.TEST_BASE_URL || 'http://127.0.0.1:4173/Youchen/',
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
   },
@@ -27,7 +27,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run dev -- --host 127.0.0.1 --port 4173',
-    url: 'http://127.0.0.1:4173/Youchen/',
+    url: process.env.TEST_SERVER_URL || 'http://127.0.0.1:4173/Youchen/',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },
