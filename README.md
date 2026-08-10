@@ -54,9 +54,12 @@ npm install
 npm run dev
 ```
 
-### Production Build Verification & Pre-Commit Hook
+### Production Build & Automated Testing
 
 ```bash
+# Run Playwright automated UI regression tests across viewports
+npm test
+
 # Manually run local production build
 npm run build
 
