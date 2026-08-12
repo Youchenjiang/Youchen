@@ -28,7 +28,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run preview -- --host localhost --port 4173',
-    url: process.env.TEST_SERVER_URL || 'http://localhost:4173/',
+    url: process.env.TEST_SERVER_URL || 'http://localhost:4173/Youchen/',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },
