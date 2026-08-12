@@ -29,22 +29,13 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci --ignore-scripts
+        run: npm ci
 
       - name: Install Chromium
-        run: npx --no-install @playwright/test@1.62.1 install --with-deps chromium
-
-      - name: Build production bundle
-        run: npm run build
+        run: npx playwright install --with-deps chromium
 
       - name: Run UI regression suite
-        run: npm run test:ui -- --reporter=list
-
-      - name: Print failure error context
-        if: failure()
-        run: |
-          echo "=== PLAYWRIGHT FAILURE DETAILS ==="
-          find test-results -name "error-context.md" -exec cat {} + || true
+        run: npm run test:ui
 
       - name: Upload failure artifacts
         if: failure()
