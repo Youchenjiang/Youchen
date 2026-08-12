@@ -38,7 +38,7 @@ jobs:
         run: npm run build
 
       - name: Run UI regression suite
-        run: npm run test:ui -- --reporter=list
+        run: npm run test:ui -- --reporter=github,list
 
       - name: Upload failure artifacts
         if: failure()
