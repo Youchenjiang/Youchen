@@ -40,6 +40,12 @@ jobs:
       - name: Run UI regression suite
         run: npx playwright test --reporter=list
 
+      - name: Print failure error context
+        if: failure()
+        run: |
+          echo "=== PLAYWRIGHT FAILURE DETAILS ==="
+          find test-results -name "error-context.md" -exec cat {} + || true
+
       - name: Upload failure artifacts
         if: failure()
         uses: actions/upload-artifact@v4
