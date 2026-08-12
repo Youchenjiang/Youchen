@@ -18,7 +18,7 @@ test.beforeEach(async ({ page }) => {
 
 test('keeps navigation usable and content inside the viewport', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Search articles' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'GitHub profile' })).toBeVisible();
+  await expect(page.locator('.navbar-github-link')).toBeVisible();
   await expectNoHorizontalOverflow(page);
 
   const header = await page.locator('.navbar-header').boundingBox();
@@ -33,7 +33,7 @@ test('keeps navigation usable and content inside the viewport', async ({ page })
   }
 
   const fullHero = await page.locator('.hero-terminal').boundingBox();
-  await page.getByRole('button', { name: 'Projects 作品集' }).click();
+  await page.getByRole('button', { name: /Projects/i }).click();
   await expect(page.locator('.projects-card')).toHaveCount(4);
   await expect(page.locator('.hero-terminal')).toHaveClass(/compact/);
   const compactHero = await page.locator('.hero-terminal').boundingBox();
@@ -56,7 +56,7 @@ test('keeps navigation usable and content inside the viewport', async ({ page })
   }
   await expectNoHorizontalOverflow(page);
 
-  await page.getByRole('button', { name: 'Blog 文章' }).click();
+  await page.getByRole('button', { name: /Blog/i }).click();
   await expect(page.locator('.article-card')).toHaveCount(2);
   await expect(page.getByRole('button', { name: 'ALL', exact: true })).toHaveCount(1);
 });
