@@ -89,10 +89,9 @@ export default function SearchModal({
   }
 
   return (
-    <div
+    <dialog
+      open
       className="search-modal-overlay"
-      role="dialog"
-      aria-modal="true"
       aria-labelledby="search-modal-title"
     >
       <div className="search-modal-card">
@@ -157,6 +156,6 @@ export default function SearchModal({
           )}
         </div>
       </div>
-    </div>
+    </dialog>
   );
 }
