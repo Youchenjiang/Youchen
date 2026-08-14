@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Calendar,
-  Clock,
-  ArrowRight,
-  Shield,
-  Cpu,
-  Tag,
-  Star,
-} from "lucide-react";
+import { Calendar, Clock, ArrowRight, Shield, Cpu, Star } from "lucide-react";
 
 /**
  * ArticleCard Component
