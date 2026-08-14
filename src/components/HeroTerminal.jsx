@@ -1,13 +1,21 @@
-import React, { useState } from 'react';
-import { Terminal, Shield, Cpu, Code2, Sparkles, Copy, Check } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  Terminal,
+  Shield,
+  Cpu,
+  Code2,
+  Sparkles,
+  Copy,
+  Check,
+} from "lucide-react";
 
-export default function HeroTerminal() {
+export default function HeroTerminal({ compact = false }) {
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
 
   const copyContact = async () => {
     try {
-      const email = import.meta.env.VITE_CONTACT_EMAIL || 'g1014308@gmail.com';
+      const email = import.meta.env.VITE_CONTACT_EMAIL || "g1014308@gmail.com";
       await navigator.clipboard.writeText(email);
       setCopied(true);
       setCopyError(false);
@@ -20,7 +28,7 @@ export default function HeroTerminal() {
   };
 
   return (
-    <section className="hero-terminal">
+    <section className={`hero-terminal ${compact ? "compact" : ""}`}>
       <div className="container">
         <div className="terminal-window">
           {/* Terminal Titlebar */}
@@ -48,16 +56,22 @@ export default function HeroTerminal() {
 
             <div className="hero-terminal-whoami-box">
               <h1 className="hero-terminal-name">
-                Youchen Jiang (�蔣�侑�宸)
+                Youchen Jiang (蔣侑宸)
                 <Sparkles size={18} color="var(--accent-green)" />
               </h1>
               <p className="hero-terminal-title">
                 Master Student @ NCU Network Security Laboratory
               </p>
               <div className="hero-terminal-badges">
-                <span className="cyber-badge"><Shield size={12}/> Cybersecurity</span>
-                <span className="cyber-badge cyan"><Cpu size={12}/> AI Application</span>
-                <span className="cyber-badge purple"><Code2 size={12}/> Full-Stack Dev</span>
+                <span className="cyber-badge">
+                  <Shield size={12} /> Cybersecurity
+                </span>
+                <span className="cyber-badge cyan">
+                  <Cpu size={12} /> AI Application
+                </span>
+                <span className="cyber-badge purple">
+                  <Code2 size={12} /> Full-Stack Dev
+                </span>
               </div>
             </div>
 
@@ -66,21 +80,48 @@ export default function HeroTerminal() {
               <span>cat core_focus.txt</span>
             </div>
             <div className="hero-terminal-core-focus-text">
-              主修程式�碼安全自動化修復、LLM AI �� 應用落地方案、與 Web � 攻擊防�禦�測試。在此分享近期的研究心得與實務�筆記。
+              主修程式碼安全自動化修復、LLM AI 應用落地方案、與 Web
+              攻擊防禦測試。在此分享近期的研究心得與實務筆記。
             </div>
 
             <div className="hero-terminal-footer">
               <div className="hero-terminal-footer-info">
-                <span className="hero-terminal-footer-label">Location: <strong className="hero-terminal-footer-value">Taoyuan / Pingtung, TW</strong></span>
-                <span className="hero-terminal-footer-label">Status: <strong className="hero-terminal-footer-value">Building AI & Security Tools</strong></span>
+                <span className="hero-terminal-footer-label">
+                  Location:{" "}
+                  <strong className="hero-terminal-footer-value">
+                    Taoyuan / Pingtung, TW
+                  </strong>
+                </span>
+                <span className="hero-terminal-footer-label">
+                  Status:{" "}
+                  <strong className="hero-terminal-footer-value">
+                    Building AI & Security Tools
+                  </strong>
+                </span>
               </div>
-              <button
-                onClick={copyContact}
-                className={`hero-terminal-copy-button ${copied ? 'copied' : copyError ? 'error' : 'default'}`}
-              >
-                {copied ? <Check size={14}/> : <Copy size={14}/>}
-                <span>{copied ? '已複製 Email' : copyError ? '複製失敗，請重試' : 'Copy Contact'}</span>
-              </button>
+              {(() => {
+                let copyButtonClass = "default";
+                let copyButtonText = "Copy Contact";
+                if (copied) {
+                  copyButtonClass = "copied";
+                  copyButtonText = "已複製 Email";
+                } else if (copyError) {
+                  copyButtonClass = "error";
+                  copyButtonText = "複製失敗，請重試";
+                }
+
+                return (
+                  <button
+                    type="button"
+                    onClick={copyContact}
+                    className={`hero-terminal-copy-button ${copyButtonClass}`}
+                    aria-label={copyButtonText}
+                  >
+                    {copied ? <Check size={14} /> : <Copy size={14} />}
+                    <span>{copyButtonText}</span>
+                  </button>
+                );
+              })()}
             </div>
           </div>
         </div>

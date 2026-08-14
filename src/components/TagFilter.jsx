@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Filter } from 'lucide-react';
+import { Tag } from 'lucide-react';
 
 /**
  * TagFilter Component
@@ -17,15 +17,8 @@ export default function TagFilter({ tags = [], activeTag, onSelectTag }) {
     <div className="tag-filter-container">
       <div className="tag-filter-label">
         <Tag size={16} />
-        <span>Tags:</span>
+        <span>Filter by:</span>
       </div>
-      <button
-        className={`tag-filter-button ${activeTag === '' ? 'active' : ''}`}
-        onClick={() => onSelectTag('')}
-      >
-        <Filter size={15} color="var(--accent-green)" />
-        <span>All</span>
-      </button>
       {safeTags.map((tag) => (
         <button
           key={tag}
