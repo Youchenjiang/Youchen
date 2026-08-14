@@ -20,7 +20,12 @@ export default function Navbar({
     <header className="navbar-header">
       <div className="navbar-container">
         {/* Brand Logo */}
-        <div onClick={onResetView} className="navbar-brand">
+        <button
+          type="button"
+          onClick={onResetView}
+          className="navbar-brand"
+          aria-label="回首頁 (Return to home)"
+        >
           <div className="navbar-brand-bg">
             <Shield size={21} color="var(--accent-green)" strokeWidth={2} />
           </div>
@@ -30,7 +35,7 @@ export default function Navbar({
             </span>
             <div className="navbar-brand-tagline">PORTFOLIO & TECH BLOG</div>
           </div>
-        </div>
+        </button>
 
         {/* Tab Navigation Pill Controls */}
         <div className="navbar-tabs">
