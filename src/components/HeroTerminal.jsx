@@ -99,19 +99,29 @@ export default function HeroTerminal({ compact = false }) {
                   </strong>
                 </span>
               </div>
-              <button
-                onClick={copyContact}
-                className={`hero-terminal-copy-button ${copied ? "copied" : copyError ? "error" : "default"}`}
-              >
-                {copied ? <Check size={14} /> : <Copy size={14} />}
-                <span>
-                  {copied
-                    ? "已複製 Email"
-                    : copyError
-                      ? "複製失敗，請重試"
-                      : "Copy Contact"}
-                </span>
-              </button>
+              {(() => {
+                let copyButtonClass = "default";
+                let copyButtonText = "Copy Contact";
+                if (copied) {
+                  copyButtonClass = "copied";
+                  copyButtonText = "已複製 Email";
+                } else if (copyError) {
+                  copyButtonClass = "error";
+                  copyButtonText = "複製失敗，請重試";
+                }
+
+                return (
+                  <button
+                    type="button"
+                    onClick={copyContact}
+                    className={`hero-terminal-copy-button ${copyButtonClass}`}
+                    aria-label={copyButtonText}
+                  >
+                    {copied ? <Check size={14} /> : <Copy size={14} />}
+                    <span>{copyButtonText}</span>
+                  </button>
+                );
+              })()}
             </div>
           </div>
         </div>
