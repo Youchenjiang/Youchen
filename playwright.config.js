@@ -13,19 +13,13 @@ export default defineConfig({
     trace: 'retain-on-failure',
   },
   projects: [
-    {
-      name: 'desktop-chromium',
-      use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 720 } },
-    },
-    {
-      name: 'mobile-chromium',
-      use: { ...devices['Desktop Chrome'], viewport: { width: 390, height: 844 } },
-    },
-    {
-      name: 'compact-desktop-chromium',
-      use: { ...devices['Desktop Chrome'], viewport: { width: 1140, height: 900 } },
-    },
-  ],
+    { name: 'desktop-chromium', viewport: { width: 1280, height: 720 } },
+    { name: 'mobile-chromium', viewport: { width: 390, height: 844 } },
+    { name: 'compact-desktop-chromium', viewport: { width: 1140, height: 900 } },
+  ].map(({ name, viewport }) => ({
+    name,
+    use: { ...devices['Desktop Chrome'], viewport },
+  })),
   webServer: {
     command: 'npm run preview -- --host 0.0.0.0 --port 4173',
     url: process.env.TEST_SERVER_URL || 'http://127.0.0.1:4173/Youchen/',
