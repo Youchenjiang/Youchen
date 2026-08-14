@@ -1,5 +1,13 @@
-import React from 'react';
-import { Calendar, Clock, ArrowRight, Shield, Cpu, Tag, Star } from 'lucide-react';
+import React from "react";
+import {
+  Calendar,
+  Clock,
+  ArrowRight,
+  Shield,
+  Cpu,
+  Tag,
+  Star,
+} from "lucide-react";
 
 /**
  * ArticleCard Component
@@ -13,20 +21,19 @@ export default function ArticleCard({ post = {}, onSelectPost }) {
   if (!post || !post.id) return null;
 
   const tags = Array.isArray(post.tags) ? post.tags : [];
+  const safeTitle = String(post.title || "").replace(/["'<>]/g, "");
 
   return (
-    <article
-      className="article-card glass-card"
-    >
+    <article className="article-card glass-card">
       <button
         type="button"
-        className="article-card-hit-area"
+        className="article-card-hit-area full-cover"
         onClick={() => onSelectPost?.(post.id)}
-        aria-label={`閱讀文章：${post.title}`}
+        aria-label={`閱讀文章：${safeTitle}`}
       />
       {post.featured && (
         <div className="article-featured-badge">
-          <Star size={12} fill="var(--accent-green)"/>
+          <Star size={12} fill="var(--accent-green)" />
           <span>FEATURED RESEARCH</span>
         </div>
       )}
@@ -34,8 +41,14 @@ export default function ArticleCard({ post = {}, onSelectPost }) {
       <div>
         {/* Category & Tags */}
         <div className="article-tags">
-          <span className={`cyber-badge ${post.category === 'AI Application' ? 'cyan' : ''}`}>
-            {post.category === 'AI Application' ? <Cpu size={12}/> : <Shield size={12}/>}
+          <span
+            className={`cyber-badge ${post.category === "AI Application" ? "cyan" : ""}`}
+          >
+            {post.category === "AI Application" ? (
+              <Cpu size={12} />
+            ) : (
+              <Shield size={12} />
+            )}
             {post.category}
           </span>
           {tags.slice(0, 3).map((tag) => (
@@ -46,14 +59,10 @@ export default function ArticleCard({ post = {}, onSelectPost }) {
         </div>
 
         {/* Title */}
-        <h2 className="article-title">
-          {post.title}
-        </h2>
+        <h2 className="article-title">{post.title}</h2>
 
         {/* Subtitle / Excerpt */}
-        <p className="article-subtitle">
-          {post.summary}
-        </p>
+        <p className="article-subtitle">{post.summary}</p>
       </div>
 
       {/* Meta Details & Action */}
